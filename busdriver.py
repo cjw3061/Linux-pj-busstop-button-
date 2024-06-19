@@ -28,11 +28,11 @@ def on_message(client, userdata, message):
     print(f"Received message from topic '{topic}': {payload}")
 
     if payload == "한밭대":
-        pixels.fill((255, 0, 0))  # 빨간색 LED로 표시
+        pixels.fill((255, 0, 0))  
         pixels.show()
         print("한밭대 도착")
     elif payload == "삼성화재연수원":
-        pixels.fill((0, 255, 0))  # 초록색 LED로 표시
+        pixels.fill((0, 255, 0))  
         pixels.show()
         print("삼성화재연수원 도착")
 
@@ -48,13 +48,13 @@ try:
         if GPIO.input(BUTTON) == GPIO.HIGH:
             sleep(1.0)
             if GPIO.input(BUTTON) == GPIO.HIGH:
-                pixels.fill((0, 0, 0))  # LED 초기화
+                pixels.fill((0, 0, 0))  
                 pixels.show()
                 print("정차했습니다.")
-                client.publish(MQTT_PUB_TOPIC, STOP_MESSAGE)  # MQTT 주제에 "정차" 메시지 발행
+                client.publish(MQTT_PUB_TOPIC, STOP_MESSAGE)  
 except KeyboardInterrupt:
     print("종료")
-    pixels.fill((0, 0, 0))  # LED 초기화
+    pixels.fill((0, 0, 0))  
     pixels.show()
 finally:
     client.loop_stop()
